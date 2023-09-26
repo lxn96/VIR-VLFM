@@ -1,0 +1,5 @@
+datasets:
+  clevr_change:
+    data_type: images
+    build_info:
+      storage: ./data/clevr_change/

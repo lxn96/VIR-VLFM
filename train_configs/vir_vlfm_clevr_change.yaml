@@ -1,0 +1,53 @@
+model:
+  arch: vir_vlfm
+  vit_model: "eva_clip_g"
+  model_type: pretrain_vicuna
+  vit_precision: ""
+  freeze_vit: True
+  freeze_qformer: True
+  use_adapter: True
+  max_txt_len: 50
+  end_sym: "###"
+  prompt_path: "prompts/clevr_change.txt"
+  prompt_template: '###Human: {} ###Assistant: '
+  ckpt: './prerained_minigpt4_7b.pth'
+
+datasets:
+  clevr_change:
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    text_processor:
+      train:
+        name: "blip_caption"
+
+run:
+  task: image_text_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"
+  init_lr: 5e-5
+  min_lr: 1e-5
+  warmup_lr: 1e-6
+
+  weight_decay: 0.05
+  max_epoch: 40
+  iters_per_epoch: 4500
+  batch_size_train: 1
+  batch_size_eval: 1
+  num_workers: 16
+  warmup_steps: 4500
+
+  seed: 42
+  output_dir: "./output/vir_vlfm"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False 
+  train_splits: ["train"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True
