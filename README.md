@@ -1,5 +1,5 @@
 # Viewpoint Integration and Registration with Vision Language Foundation Model for Image Change Understanding
-Xiaonan Lu, Jianlong Yuan*, Ruigang Niu, Yuan Hu, Fan Wang.
+Xiaonan Lu, Jianlong Yuan*, Ruigang Niu, Yuan Hu, Fan Wang
 
 **DAMO Academy, Alibaba Group**
 
